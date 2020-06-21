@@ -1,0 +1,4 @@
+customservermod.command.coords.argument.require=Please specify only one player
+customservermod.command.coords.output.coord.hover=Click to paste a tp command to this location
+customservermod.command.coords.error=is not a valid player
+customservermod.command.tpdim.argument.require=Please specify a player

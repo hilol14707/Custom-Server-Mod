@@ -38,6 +38,13 @@ The log file is in the Minecraft `logs/csm` folder
 - Player Join/Leave
 
 # Installation
-
 Go to releases and download the latest version then put that into your mods folder.
 [(Requires Minecraft Forge for 1.12.2)](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html)
+
+# Build
+To build this file yourself clone this repository and open a command prompt in this folder.
+
+Run the command 
+```batch
+ gradlew build
+```

@@ -11,9 +11,9 @@ import com.github.hilol14707.customservermod.util.LogHelper;
 import com.github.hilol14707.customservermod.util.Reference;
 
 public class ModLogger {
-    private static String logFolder, currentSession;
-    private static File file;
-    private static BufferedWriter writer;
+    private String logFolder, currentSession;
+    private File file;
+    private BufferedWriter writer;
 
     public ModLogger() {
         // file is located at logs/csm/<@date>.log
@@ -44,10 +44,24 @@ public class ModLogger {
             LogHelper.logger.error(data);
         }
     }
+
+    public void save() {
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            writer = new BufferedWriter(new FileWriter(logFolder + currentSession + ".log", true));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void write(String data) {
         writeData(data, "general");
     }
-    
+
     public void writerStop() {
         write("server stopping");
         try {

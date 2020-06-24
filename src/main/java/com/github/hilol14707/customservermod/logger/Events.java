@@ -7,11 +7,17 @@ import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
 public class Events {
+    @SubscribeEvent
+    public void onWorldSave(final WorldEvent.Save event) {
+        Main.getModLogger().save();
+    }
+
     @SubscribeEvent
     public void onServerChat(final ServerChatEvent event) {
         Main.getModLogger().writeOnChat("<" + event.getUsername() + "> " + event.getMessage());

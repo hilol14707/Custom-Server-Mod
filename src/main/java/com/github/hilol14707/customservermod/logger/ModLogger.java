@@ -48,10 +48,6 @@ public class ModLogger {
     public void save() {
         try {
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             writer = new BufferedWriter(new FileWriter(logFolder + currentSession + ".log", true));
         } catch (IOException e) {
             e.printStackTrace();

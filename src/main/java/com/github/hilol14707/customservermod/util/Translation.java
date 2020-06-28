@@ -6,17 +6,30 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
 public class Translation {
-    // returns the translation text as a String (client doesn't require lang file)
+    /**
+     * (client doesn't require lang file)
+     * @param translationKey
+     * @return translation text as a String
+     */
     public static String translatedString(String translationKey) {
         return new TextComponentTranslation(translationKey).getUnformattedText();
     }
 
-    // returns the translation text as a TranslationComponent (client doesn't require lang file)
+    /**
+     * (client doesn't require lang file)
+     * @param translationKey
+     * @return translation text as a TranslationComponent
+     */
     public static TextComponentString getTextComponent(String translationKey) {
         return new TextComponentString(translatedString(translationKey));
     }
 
-    // returns the translation text as a TranslationComponent with color (client doesn't require lang file)
+    /**
+     * (client doesn't require lang file)
+     * @param translationKey
+     * @param color
+     * @return translation text as a TranslationComponent with color
+     */
     public static TextComponentString getTextComponent(String translationKey, TextFormatting color) {
         return (TextComponentString) new TextComponentString(translatedString(translationKey)).setStyle(new Style().setColor(color));
     }

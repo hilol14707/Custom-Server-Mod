@@ -3,7 +3,7 @@ package com.github.hilol14707.customservermod.commands;
 import java.util.Collections;
 import java.util.List;
 
-import com.github.hilol14707.customservermod.util.ConfigHandler;
+import com.github.hilol14707.customservermod.Main;
 import com.github.hilol14707.customservermod.util.LogHelper;
 import com.github.hilol14707.customservermod.util.Translation;
 import com.google.common.collect.Lists;
@@ -23,7 +23,7 @@ import net.minecraft.util.text.event.HoverEvent;
 
 public class CommandCoords extends CommandBase {
 
-	private final List<String> aliases = Lists.newArrayList(ConfigHandler.Commands.Coords.NAME, ConfigHandler.Commands.Coords.ALIASES);
+	private final List<String> aliases = Lists.newArrayList(Main.getConfig().commands.coords.NAME, Main.getConfig().commands.coords.ALIASES);
 
 	private final String getDimName(final int dim) {
 		if (dim == 0)
@@ -37,12 +37,12 @@ public class CommandCoords extends CommandBase {
 
 	@Override
 	public String getName() {
-		return ConfigHandler.Commands.Coords.NAME;
+		return Main.getConfig().commands.coords.NAME;
 	}
 
 	@Override
 	public String getUsage(final ICommandSender sender) {
-		return "/" + ConfigHandler.Commands.Coords.NAME + " <player name>";
+		return "/" + Main.getConfig().commands.coords.NAME + " <player name>";
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class CommandCoords extends CommandBase {
 
 	@Override
 	public int getRequiredPermissionLevel() {
-		return ConfigHandler.Commands.Coords.PERM_LEVEL;
+		return Main.getConfig().commands.coords.PERM_LEVEL;
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class CommandCoords extends CommandBase {
 			sender.sendMessage(new TextComponentString(sp.getName() + " is in " + getDimName(sp.dimension) + " at the coordinates ").appendSibling(
 				new TextComponentString("[x: " + x + " y: "+ y + " z: " + z + "]")
 					.setStyle(new Style().setColor(TextFormatting.AQUA)
-					.setClickEvent(new ClickEvent(net.minecraft.util.text.event.ClickEvent.Action.SUGGEST_COMMAND, "/" + ConfigHandler.Commands.TpDim.NAME + " " + sender.getName() + " " + sp.posX + " " + sp.posY + " " + sp.posZ + " " + sp.dimension))
+					.setClickEvent(new ClickEvent(net.minecraft.util.text.event.ClickEvent.Action.SUGGEST_COMMAND, "/" + Main.getConfig().commands.tpDim.NAME + " " + sender.getName() + " " + sp.posX + " " + sp.posY + " " + sp.posZ + " " + sp.dimension))
 					.setHoverEvent(new HoverEvent(net.minecraft.util.text.event.HoverEvent.Action.SHOW_TEXT, Translation.getTextComponent("customservermod.command.coords.output.coord.hover"))))));
 			LogHelper.logCommand("coords", "ran", sender.getName(), sp.getName() + " is in Dim(" + sp.dimension + ") [" + x + ", " + y + ", " + z +"]");
 		} catch (final Exception e) {

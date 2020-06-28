@@ -8,6 +8,7 @@ import com.github.hilol14707.customservermod.util.ConfigHandler;
 import com.github.hilol14707.customservermod.util.LogHelper;
 import com.github.hilol14707.customservermod.util.Reference;
 import com.github.hilol14707.customservermod.util.RegistryHandler;
+import com.github.hilol14707.customservermod.util.ConfigHandler.ConfigValues;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -19,9 +20,8 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptableRemoteVersions = "*")// , serverSideOnly = false, )
 public class Main {
-    private static File modConfigDir;
     private static ModLogger modLogger;
-    public static File config;
+    private static ConfigHandler config;
 
     @Instance(Reference.MOD_ID)
     public static Main instance;
@@ -31,13 +31,14 @@ public class Main {
 
     @EventHandler
     public static void PreInit(final FMLPreInitializationEvent event) {
-        modConfigDir = event.getModConfigurationDirectory();
-        ConfigHandler.registerConfig(modConfigDir);
+        File modConfigDir = event.getModConfigurationDirectory();
+        config = new ConfigHandler(modConfigDir);
+        config.init();
     }
 
     @EventHandler
     public static void serverInit(final FMLServerStartingEvent event) {
-        ConfigHandler.registerConfig(modConfigDir);
+        config.init();
         RegistryHandler.serverRegistries(event);
         Main.modLogger = new ModLogger();
         LogHelper.logger.info("initialized");
@@ -50,5 +51,9 @@ public class Main {
 
     public static ModLogger getModLogger() {
         return modLogger;
+    }
+
+    public static ConfigValues getConfig() {
+        return config.getConfig();
     }
 }

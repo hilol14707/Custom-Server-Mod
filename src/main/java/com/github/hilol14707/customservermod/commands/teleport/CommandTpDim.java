@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.github.hilol14707.customservermod.util.ConfigHandler;
+import com.github.hilol14707.customservermod.Main;
 import com.github.hilol14707.customservermod.util.LogHelper;
 import com.google.common.collect.Lists;
 
@@ -17,16 +17,16 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 
 public class CommandTpDim extends CommandBase {
-    private final List<String> aliases = Lists.newArrayList(ConfigHandler.Commands.TpDim.NAME , ConfigHandler.Commands.TpDim.ALIASES);
+    private final List<String> aliases = Lists.newArrayList(Main.getConfig().commands.tpDim.NAME, Main.getConfig().commands.tpDim.ALIASES);
 
     @Override
     public String getName() {
-        return ConfigHandler.Commands.TpDim.NAME;
+        return Main.getConfig().commands.tpDim.NAME;
     }
 
     @Override
     public String getUsage(final ICommandSender sender) {
-        return "/"  + ConfigHandler.Commands.TpDim.NAME + " <player to tp> <x> <y> <z> <dim number>";
+        return "/"  + Main.getConfig().commands.tpDim.NAME + " <player to tp> <x> <y> <z> <dim number>";
     }
 
     @Override
@@ -36,7 +36,7 @@ public class CommandTpDim extends CommandBase {
 
     @Override
     public int getRequiredPermissionLevel() {
-        return ConfigHandler.Commands.TpDim.PERM_LEVEL;
+        return Main.getConfig().commands.tpDim.PERM_LEVEL;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class CommandTpDim extends CommandBase {
         }
 
         TeleportManager.teleportToDimension(player, coords.get(0), coords.get(1), coords.get(2), dimension);
-        LogHelper.logCommand(ConfigHandler.Commands.TpDim.NAME, "ran", sender.getName(), player.getName() + " to dim(" + dimension + ") " + coords.toString());
+        LogHelper.logCommand(Main.getConfig().commands.tpDim.NAME, "ran", sender.getName(), player.getName() + " to dim(" + dimension + ") " + coords.toString());
     }
 
 }

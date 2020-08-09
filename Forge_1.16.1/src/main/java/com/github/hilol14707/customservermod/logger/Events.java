@@ -1,7 +1,5 @@
 package com.github.hilol14707.customservermod.logger;
 
-import java.util.List;
-
 import com.github.hilol14707.customservermod.Main;
 import com.github.hilol14707.customservermod.util.ConfigHandler;
 
@@ -19,6 +17,15 @@ import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 public class Events {
     @SubscribeEvent
     public static void onServerStop(final FMLServerStoppingEvent event) {
+        String[] playersOnline = event.getServer().getOnlinePlayerNames();
+        Boolean PLAYERS_PRESENT = playersOnline.length > 0;
+        String endMsg = PLAYERS_PRESENT ? "Players online when the server stopped: [" : "No players were online when the server stopped.";
+        if (PLAYERS_PRESENT) {
+            for (int i = 0; i < playersOnline.length; i++) {
+                endMsg += i > playersOnline.length-1 ? playersOnline[i] + ", " : playersOnline[i] + "]";
+            }
+        }
+        Main.getModLogger().write(endMsg);
         Main.getModLogger().writerStop();
     }
 
@@ -38,10 +45,9 @@ public class Events {
         String sender = event.getParseResults().getContext().getSource().getName();
         String[] cmd = fullCommand.replace("/", "").split(" ", 2);
 
-        if (cmd[0].equals("say") && sender == "Server") {
+        if (cmd[0].equals("say") && "Server".equals(sender)) {
             Main.getModLogger().writeOnChat("[server] " + cmd[1]);
-        }
-        if (ConfigHandler.LOG_COMMANDS_LIST.get().contains(cmd[0])) {
+        } else if (ConfigHandler.LOG_COMMANDS_LIST.get().contains(cmd[0])) {
             Main.getModLogger().writeOnCmd(sender + " [ran] " + fullCommand);
         }
     }

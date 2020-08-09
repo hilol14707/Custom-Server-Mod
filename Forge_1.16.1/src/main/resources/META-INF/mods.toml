@@ -23,7 +23,7 @@ issueTrackerURL="https://github.com/hilol14707/Custom-Server-Mod/issues" #option
 modId="customservermod" #mandatory
 
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="1.16.1-1.0.0" #mandatory
+version="1.16.1-1.0.1" #mandatory
 
  # A display name for the mod
 displayName="Custom Server Mod" #mandatory

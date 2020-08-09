@@ -1,0 +1,8 @@
+# Custom Server Mod for Forge Minecraft 1.16.1
+1.0.1
+- ported the /coords command
+
+1.0.0 @ Aug 7, 2020
+- ported logging events to 1.16.1 from 1.12.2
+- config file
+	- includes array of commands to log

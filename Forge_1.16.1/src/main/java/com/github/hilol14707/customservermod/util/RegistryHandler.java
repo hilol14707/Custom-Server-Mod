@@ -1,5 +1,7 @@
 package com.github.hilol14707.customservermod.util;
 
+import com.github.hilol14707.customservermod.commands.CommandCoords;
+
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -10,6 +12,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class RegistryHandler {
     @SubscribeEvent
     public static void onCommandRegistry(final RegisterCommandsEvent event) {
-        // CommandCoords.register(event.getDispatcher());
+        CommandCoords.register(event.getDispatcher());
     }
 }

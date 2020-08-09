@@ -33,7 +33,8 @@ public class CommandTpa {
             Entity source = context.getSource().getEntity();
             if (source instanceof ServerPlayerEntity) {
                 ServerPlayerEntity player = EntityArgument.getPlayer(context, "player");
-                if (!TpaData.doesRequestExist(source.getName().getUnformattedComponentText(), player.getName().getUnformattedComponentText())) {
+                Boolean exist = TpaData.doesRequestExist(source.getName().getUnformattedComponentText(), player.getName().getUnformattedComponentText());
+                if (!exist || (exist && TpaData.getRequest(source.getName().getUnformattedComponentText(), player.getName().getUnformattedComponentText()).expireTime < new Date().getTime())) {
                     TpaData.addRequest(source.getName().getUnformattedComponentText(), player.getName().getUnformattedComponentText(), new Date().getTime() + WAIT_TIME);
 
                     player.sendMessage(new StringTextComponent(source.getName().getUnformattedComponentText() + " has requested to teleport to you.\n")

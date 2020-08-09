@@ -1,14 +1,34 @@
 # Custom Server Mod
 ##### A Forge 1.16.1 Minecraft Mod
 
-This mod is only required on the Server. The client does not need this mod if it is on the Server.
+This mod is only required on the server. The client does not need this mod if it is on the server.
 
 Note: This was coded using `Forge version 32.0.106`
 
 # Features
 
 ## Commands
-Eventually 1.12.2 commands will be ported.
+### /coords
+Description: Gets the current x, y, z and dimension the specified player is
+
+Usage: ```/coords <player>```
+
+### /tpa
+Description: Asks another player to teleport to them.
+
+Usage: ```/tpa <player>```
+
+### /tpaaccept
+Description: Accepts a player's tpa request if they sent one.
+
+The requestor will be teleported to the acceptor.
+
+Usage: ```/tpaaccept <player>```
+
+*(NOTE: the acceptor has 2 minutes to accept the tpa request before it expires)*
+
+### /tpdim
+can use `/execute in <namespace:dimension_name> run tp @s <x> <y> <z>`
 
 ## Logging
 Logs the following stuff to a log file.

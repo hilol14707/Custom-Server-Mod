@@ -28,7 +28,7 @@ public class CommandCoords {
                     // todo log
                     ResourceLocation dimLocation = player.getServerWorld().func_234923_W_().func_240901_a_(); // from net.minecraft.server.MinecraftServer:1154
                     String dim = dimLocation.getPath(); // dimension name
-                    StringTextComponent s_base = new StringTextComponent(player.getName().getUnformattedComponentText() + " is in dimension (" + dim  + ") at the coordinates\n"); // todo dim
+                    StringTextComponent s_base = new StringTextComponent(player.getName().getUnformattedComponentText() + " is in dimension cc(" + dim  + ") at the coordinates\n"); // todo dim
                     Style style = Style.field_240709_b_ // create style instance
                             // setColor()
                             .func_240712_a_(TextFormatting.AQUA)
